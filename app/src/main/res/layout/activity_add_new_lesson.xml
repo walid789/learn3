@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- Champ 'id' -->
+    <EditText
+        android:id="@+id/editTextId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="ID"/>
+
+    <!-- Champ 'name' -->
+    <EditText
+        android:id="@+id/editTextName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Name"/>
+
+    <!-- Champ 'title' -->
+    <EditText
+        android:id="@+id/editTextTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Title"/>
+
+    <!-- Champ 'paragraphe' (type 'textarea') -->
+    <EditText
+        android:id="@+id/editTextParagraph"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Paragraph"
+        android:inputType="textMultiLine"
+        android:minLines="4"/>
+
+    <!-- Champ 'code_playground' (type 'textarea') -->
+    <EditText
+        android:id="@+id/editTextCodePlayground"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Code Playground"
+        android:inputType="textMultiLine"
+        android:minLines="6"/>
+
+    <Button
+        android:id="@+id/addButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add" />
+</LinearLayout>
