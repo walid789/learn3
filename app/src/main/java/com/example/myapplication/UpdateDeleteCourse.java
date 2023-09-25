@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,26 +17,42 @@ import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 
-public class AddCourse extends AppCompatActivity {
+public class UpdateDeleteCourse extends AppCompatActivity {
     private static final int REQUEST_IMAGE_CAPTURE = 1;
     private EditText editTextCourseName;
     private ImageView imageViewCourseImage;
     private Bitmap courseImageBitmap;
     private DBHandler dbHandler;
+    public static ArrayList<Course> courseList = new ArrayList<Course>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_course);
-        getSupportActionBar().setTitle("Add New Course");
+        setContentView(R.layout.activity_update_delete_course);
+        getSupportActionBar().setTitle("Update Or Delete Course");
 
-
+        courseList.clear();
+        dbHandler = new DBHandler(UpdateDeleteCourse.this);
         editTextCourseName = findViewById(R.id.editTextCourseName);
+        int course_id = getIntent().getIntExtra("course_id", 0);
+        courseList.addAll(dbHandler.readCoursesById(course_id));
+
+        editTextCourseName.setText(courseList.get(0).getName());
         imageViewCourseImage = findViewById(R.id.imageViewCourseImage);
+        byte[] imageData = courseList.get(0).getImage();
+        if (imageData != null && imageData.length > 0) {
+            Bitmap bitmap = BitmapFactory.decodeByteArray(imageData, 0, imageData.length);
+            imageViewCourseImage.setImageBitmap(bitmap);
+        } else {
+            // If no image data is available, you can set a default image
+            imageViewCourseImage.setImageResource(R.drawable.html);
+        }
         Button buttonSelectImage = findViewById(R.id.buttonSelectImage);
         Button buttonSaveCourse = findViewById(R.id.buttonSaveCourse);
-        dbHandler = new DBHandler(AddCourse.this);
+
+
 
 
         buttonSelectImage.setOnClickListener(new View.OnClickListener() {
@@ -51,20 +69,21 @@ public class AddCourse extends AppCompatActivity {
             public void onClick(View v) {
                 // Get the course name entered by the user
                 String courseName = editTextCourseName.getText().toString();
+                int id =courseList.get(0).getId();
                 // Save the course name and image to the database
                 if (!courseName.isEmpty() && courseImageBitmap != null) {
                     byte[] imageByteArray = getByteArrayFromBitmap(courseImageBitmap);
-                    dbHandler.saveCourse(courseName,imageByteArray);
-                    Toast.makeText(AddCourse.this, "course add with success", Toast.LENGTH_SHORT).show();
-                    BackToAdminPanel();
+                    dbHandler.updateCourse(id,courseName,imageByteArray);
+                    Toast.makeText(UpdateDeleteCourse.this, "course update with success", Toast.LENGTH_SHORT).show();
+                    BackToList();
                 }
             }
         });
     }
 
-    public void BackToAdminPanel(){
-          Intent intent=new Intent(this,AdminPanel.class);
-          startActivity(intent);
+    public void BackToList(){
+        Intent intent=new Intent(this,MainActivity.class);
+        startActivity(intent);
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -91,4 +110,4 @@ public class AddCourse extends AppCompatActivity {
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
         return stream.toByteArray();
     }
-    }
+}

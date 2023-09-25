@@ -31,10 +31,10 @@ public class ShapeAdapter extends ArrayAdapter<Course>
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.shape_cell, parent, false);
         }
         TextView name = (TextView) convertView.findViewById(R.id.name);
-        TextView id = (TextView) convertView.findViewById(R.id.id);
+
         ImageView courseImageView = convertView.findViewById(R.id.courseImageView);
         name.setText(course.getName());
-        id.setText(Integer.toString(course.getId()));
+
 
 
         byte[] imageData = course.getImage();

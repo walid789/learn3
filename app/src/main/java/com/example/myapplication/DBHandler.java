@@ -20,18 +20,11 @@ public class DBHandler extends SQLiteOpenHelper {
 
     // below variable is for our table name.
     private static final String TABLE_NAME = "user";
-
-
     private static final String ID_COL = "id";
-
     private static final String UserName_COL = "user_name";
-
     private static final String Phone_Number_COL = "phone_number";
-
     private static final String Password_COL = "password";
-
     private static final String Email_COL = "Email";
-
 
     /* table course */
     private static final String TABLE_course = "course";
@@ -63,7 +56,6 @@ public class DBHandler extends SQLiteOpenHelper {
 
         db.execSQL("create table course (id integer PRIMARY KEY AUTOINCREMENT,name text,image blob );");
         db.execSQL(query);
-       // db.execSQL(query3);
     }
 
     public void addNewLesson(int id_course  ,String name ,String title ,String pargraphe ,String code_playground) {
@@ -101,6 +93,19 @@ public class DBHandler extends SQLiteOpenHelper {
         database.insert("course", null, values);
         database.close();
     }
+ // add new quiz
+    public void saveQuiz(String question, String option1, String option2, String option3,int valid_option ,int  id_lesson) {
+        SQLiteDatabase database = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("question", question);
+        values.put("option1", option1);
+        values.put("option2", option2);
+        values.put("option3", option3);
+        values.put("valid_option", valid_option);
+        values.put("id_lesson", id_lesson);
+        database.insert("quiz", null, values);
+        database.close();
+    }
 
     public int Auth(String UserName, String  Password){
         SQLiteDatabase db = this.getReadableDatabase();
@@ -127,6 +132,30 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close(); // Close the database
         return isAuthenticated;
     }
+
+    public void updateCourse(int courseId, String newName, byte[] newImage) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("name", newName);
+        values.put("image", newImage);
+
+        // Define the WHERE clause to specify which course to update based on the ID
+        String whereClause = "id = ?";
+        String[] whereArgs = { String.valueOf(courseId) };
+
+        // Update the course in the database
+        int numRowsUpdated = db.update("course", values, whereClause, whereArgs);
+
+        // Check if the update was successful
+        if (numRowsUpdated > 0) {
+            Log.d("Database", "Course updated successfully");
+        } else {
+            Log.d("Database", "Failed to update course");
+        }
+
+        db.close();
+    }
+
 
     // we have created a new method for reading all the courses.
     public ArrayList<Course> readCourses()
@@ -158,16 +187,63 @@ public class DBHandler extends SQLiteOpenHelper {
             }
 
             // moving our cursor to next.
-
         // at last closing our cursor
         // and returning our array list.
         cursorCourses.close();
         db.close();
-        /*for (int i = 0; i < courseModalArrayList.size(); i++) {
-            Log.d("CourseList", "Item " + i + ": " + courseModalArrayList.get(i).getName());
-        }*/
+
         return courseModalArrayList;
     }
+
+    public ArrayList<Course> readCoursesById(int id)
+    {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursorCourses = db.rawQuery("SELECT id, name, image FROM " + TABLE_course + " WHERE id = ?", new String[]{String.valueOf(id)});
+        ArrayList<Course> courseModalArrayList
+                = new ArrayList<Course>();
+        while (cursorCourses.moveToNext()) {
+            Course course = new Course(
+                    cursorCourses.getInt(cursorCourses.getColumnIndexOrThrow("id")),
+                    cursorCourses.getString(cursorCourses.getColumnIndexOrThrow("name")),
+                    cursorCourses.getBlob(cursorCourses.getColumnIndexOrThrow("image"))
+            );
+            courseModalArrayList.add(course);
+        }
+        cursorCourses.close();
+        db.close();
+        return courseModalArrayList;
+    }
+
+
+
+    /* read lesson by id */
+    public ArrayList<QuizClass> ReadQuizByIdLesson (int id)
+    {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursorQuiz = db.rawQuery("SELECT question,option1,option2,option3,valid_option,id_lesson FROM " + "quiz" + " WHERE id_lesson = ?", new String[]{String.valueOf(id)});
+        ArrayList<QuizClass> QUIZModalArrayList
+                = new ArrayList<QuizClass>();
+        while (cursorQuiz.moveToNext()) {
+            QuizClass quiz = new QuizClass(
+                    cursorQuiz.getString(cursorQuiz.getColumnIndexOrThrow("question")),
+                    cursorQuiz.getString(cursorQuiz.getColumnIndexOrThrow("option1")),
+                    cursorQuiz.getString(cursorQuiz.getColumnIndexOrThrow("option2")),
+                    cursorQuiz.getString(cursorQuiz.getColumnIndexOrThrow("option3")),
+                    cursorQuiz.getInt(cursorQuiz.getColumnIndexOrThrow("valid_option")),
+                    cursorQuiz.getInt(cursorQuiz.getColumnIndexOrThrow("id_lesson"))
+            );
+            QUIZModalArrayList.add(quiz);
+        }
+        cursorQuiz.close();
+        db.close();
+        return QUIZModalArrayList;
+    }
+
+
 
 
 
@@ -201,20 +277,10 @@ public class DBHandler extends SQLiteOpenHelper {
                     courseModalArrayList.add(lesson);
         }
 
-        // moving our cursor to next.
-
-        // at last closing our cursor
-        // and returning our array list.
         cursorCourses.close();
         db.close();
-        /*for (int i = 0; i < courseModalArrayList.size(); i++) {
-            Log.d("CourseList", "Item " + i + ": " + courseModalArrayList.get(i).getName());
-        }*/
         return courseModalArrayList;
     }
-
-
-
         @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 

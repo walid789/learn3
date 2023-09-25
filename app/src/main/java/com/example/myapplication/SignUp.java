@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class SignUp extends AppCompatActivity {
@@ -14,11 +15,20 @@ public class SignUp extends AppCompatActivity {
     private Button adduserButton;
     private DBHandler dbHandler;
     private Button button;
+    private TextView txt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+        getSupportActionBar().hide();
         button=findViewById(R.id.buttonSignUp);
+        txt=findViewById(R.id.txtSignIn);
+        txt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendToLogin();
+            }
+        });
         // pour recupere les valeur du edit text
         user_nameEdt =findViewById(R.id.editTextUsername);
         passwordEdt =findViewById(R.id.editTextPassword);
@@ -30,7 +40,7 @@ public class SignUp extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 createuser();
-                //sendToLogin();
+                sendToLogin();
             }
         });
     }

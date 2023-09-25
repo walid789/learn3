@@ -8,13 +8,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Login extends AppCompatActivity {
-    private Button buttonSinUp;
+    TextView buttonSinUp;
     private Button buttonLogin;
     private DBHandler dbHandler;
     private EditText user_nameEdt, passwordEdt;
@@ -24,6 +25,7 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        getSupportActionBar().hide();
 
         buttonSinUp=findViewById(R.id.buttonSignup);
         buttonLogin=findViewById(R.id.buttonLogin);
@@ -57,6 +59,9 @@ public class Login extends AppCompatActivity {
         int test= dbHandler.Auth(user_name,password);
         if(test==1){
             Toast.makeText(Login.this, "Auth success for user", Toast.LENGTH_SHORT).show();
+            Intent intent=new Intent(this,MainActivity.class);
+            startActivity(intent);
+
         }
         if(test==2){
             Toast.makeText(Login.this, "Auth success for admin", Toast.LENGTH_SHORT).show();

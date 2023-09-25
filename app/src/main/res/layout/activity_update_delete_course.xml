@@ -32,5 +32,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Save Course" />
+        android:text="Update Course" />
+
+    <Button
+        android:id="@+id/deleteCourse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Delete Course" />
 </LinearLayout>
