@@ -17,7 +17,7 @@ public class AddQuiz extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_quiz);
-
+        getSupportActionBar().hide();
         qestionEdt = findViewById(R.id.editTextQestion);
         option1Edt = findViewById(R.id.editTextoption1);
         option2Edt = findViewById(R.id.editTextoption2);

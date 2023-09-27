@@ -179,6 +179,7 @@
             android:gravity="center"
             android:layout_weight="1">
             <androidx.cardview.widget.CardView
+                android:id="@+id/updatequiz"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_margin="10dp"
@@ -200,11 +201,12 @@
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
                         android:textColor="@color/white"
-                        android:text="programble"
+                        android:text="Update Quiz"
                         />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
             <androidx.cardview.widget.CardView
+                android:id="@+id/logout"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_margin="10dp"
@@ -219,14 +221,14 @@
                         android:layout_width="35dp"
                         android:layout_height="35dp"
                         android:layout_gravity="center"
-                        android:background="@drawable/dumbbell1"/>
+                        android:background="@drawable/logout"/>
                     <TextView
                         android:layout_marginTop="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
                         android:textColor="@color/white"
-                        android:text="programble"
+                        android:text="Log Out"
                         />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

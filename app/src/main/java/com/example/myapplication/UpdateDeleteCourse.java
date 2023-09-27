@@ -31,7 +31,7 @@ public class UpdateDeleteCourse extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_delete_course);
-        getSupportActionBar().setTitle("Update Or Delete Course");
+        getSupportActionBar().setTitle("Update  Course");
 
         courseList.clear();
         dbHandler = new DBHandler(UpdateDeleteCourse.this);

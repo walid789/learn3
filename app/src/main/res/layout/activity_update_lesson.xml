@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:scrollbars="none"
-    tools:context=".SignUp">
+    android:scrollbars="none">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,13 +17,13 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp">
+            android:layout_marginTop="10dp">
 
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:src="@drawable/register"
+                android:layout_height="130dp"
+                android:src="@drawable/up"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -39,15 +38,32 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:hint="User Name "
+            android:hint="ID Course "
             android:textColorHint="@color/black"
             app:boxStrokeColor="@color/black">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextUsername"
+                android:id="@+id/editTextId"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="number"
+                android:singleLine="true"
+                android:textColor="@color/black" />
 
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="Lesson Name "
+            android:textColorHint="@color/black"
+            app:boxStrokeColor="@color/black">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:inputType="text"
                 android:singleLine="true"
                 android:textColor="@color/black" />
@@ -58,75 +74,57 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:hint="Email "
+            android:hint="Lesson Title "
             android:textColorHint="@color/black"
             app:boxStrokeColor="@color/black">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextEmail"
+                android:id="@+id/editTextTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 android:inputType="text"
                 android:singleLine="true"
                 android:textColor="@color/black" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
-
-
-        <LinearLayout
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:hint="Paragraphe"
+            android:textColorHint="@color/black"
+            app:boxStrokeColor="@color/black">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextParagraph"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="+ 49"
+                android:inputType="textMultiLine"
+                android:singleLine="true"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                />
 
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:hint="Mobile Number"
-                android:textColorHint="@color/black"
-                app:boxStrokeColor="@color/black">
+        </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editTextPhoneNumber"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:singleLine="true"
-                    android:textColor="@color/black"
-                    />
 
-            </com.google.android.material.textfield.TextInputLayout>
-
-        </LinearLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:hint="Password"
+            android:hint="Code Playground"
             android:textColorHint="@color/black"
-            app:boxStrokeColor="@color/black"
-            app:passwordToggleEnabled="true">
+            app:boxStrokeColor="@color/black">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextPassword"
+                android:id="@+id/editTextCodePlayground"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
-                android:inputType="textEmailAddress"
+                android:inputType="textMultiLine"
                 android:singleLine="true"
                 android:textColor="@color/black" />
 
@@ -147,7 +145,7 @@
                 android:visibility="invisible" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/buttonSignUp"
+                android:id="@+id/addButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/black"
@@ -156,7 +154,7 @@
                 android:paddingTop="10dp"
                 android:paddingEnd="20dp"
                 android:paddingBottom="20dp"
-                android:text="Sign Up"
+                android:text="Update Lesson"
                 app:cornerRadius="10dp" />
 
         </FrameLayout>
@@ -167,24 +165,6 @@
             android:layout_marginTop="32dp"
             android:gravity="center"
             android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                android:text="Already have an Account ?"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/txtSignIn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:text="Sign In"
-                android:textColor="@color/material_dynamic_primary50"
-                android:textSize="14sp" />
-
 
         </LinearLayout>
 

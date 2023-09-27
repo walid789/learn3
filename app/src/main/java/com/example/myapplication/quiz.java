@@ -4,6 +4,7 @@ import static com.example.myapplication.LessonViewAll.LessonList;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -24,11 +25,8 @@ public class quiz extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
+        getSupportActionBar().setTitle("Quiz Play");
         ListView listView = findViewById(R.id.listViewquiz);
-
-
-
-
 
         int item_id = getIntent().getIntExtra("id_lesson",0);
         dbHandler = new DBHandler(quiz.this);
@@ -50,6 +48,7 @@ public class quiz extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 int pos=position+1;
                 if (pos==quizList.get(0).getValid_option()){
+                    sendtoListAll();
                     Toast.makeText(quiz.this, "correct answer.", Toast.LENGTH_SHORT).show();
                 }
                 else{
@@ -58,6 +57,11 @@ public class quiz extends AppCompatActivity {
                 }
             }
         });
+    }
+    public void  sendtoListAll(){
+        Intent intent=new Intent(this,LessonViewAll.class);
+        intent.putExtra("course_id", quizList.get(0).getId_lesson());
+        startActivity(intent);
     }
 
 }

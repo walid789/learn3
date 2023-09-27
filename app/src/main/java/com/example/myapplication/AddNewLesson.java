@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,6 +21,7 @@ public class AddNewLesson extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_lesson);
+        getSupportActionBar().hide();
         // Associate views with variables
         editTextId = findViewById(R.id.editTextId);
         editTextName = findViewById(R.id.editTextName);
@@ -40,7 +42,11 @@ public class AddNewLesson extends AppCompatActivity {
                 String CodePlayground =editTextCodePlayground.getText().toString();
                 dbHandler.addNewLesson(id,Name,Title,Paragraph,CodePlayground);
                 Toast.makeText(AddNewLesson.this, "Data added!", Toast.LENGTH_SHORT).show();
+                sendtoAdminPanel();
             }
         });
     }
+    private  void sendtoAdminPanel(){
+        Intent intent=new Intent(this,AdminPanel.class);
+        startActivity(intent);}
 }

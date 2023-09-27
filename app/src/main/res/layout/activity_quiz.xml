@@ -4,17 +4,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
-    android:gravity="center">
+    android:padding="16dp">
 <TextView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:id="@+id/qestion"
+    android:textStyle="bold"
+    android:textColor="@color/black"
+    android:textSize="20sp"
+    android:layout_marginTop="15dp"
+    android:layout_marginBottom="8dp"
     />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="only one correct answer "
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="8dp"
+        />
     <ListView
         android:id="@+id/listViewquiz"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
-
 </LinearLayout>

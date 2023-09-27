@@ -24,6 +24,7 @@ public class LessonViewAll extends AppCompatActivity {
         setupData();
         setUpList();
         setUpOnclickListener();
+        setupUpLongclick();
     }
     private void setupData() {
         LessonList.clear();
@@ -49,6 +50,18 @@ public class LessonViewAll extends AppCompatActivity {
             }
         });
     }
+    private void setupUpLongclick(){
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(LessonViewAll.this, UpdateLesson.class);
+                intent.putExtra("id_lesson",position);
+                startActivity(intent);
+                return true;
+            }
+        });
+    }
+
 
 
 

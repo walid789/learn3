@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.Button;
 
 public class AdminPanel extends AppCompatActivity {
-    CardView addNewCourseButton, ListAllCourse, AddLesson, Addquizz;
+    CardView addNewCourseButton, ListAllCourse, AddLesson, Addquizz,Logout,updatequiz;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,11 +17,25 @@ public class AdminPanel extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_admin_panel);
         getSupportActionBar().setTitle("Admin Panel");
+        updatequiz=findViewById(R.id.updatequiz);
+        updatequiz.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendToUpdateQuizz();
+            }
+        });
         ListAllCourse=findViewById(R.id.ListAllCourse);
         ListAllCourse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 sendToList();
+            }
+        });
+        Logout=findViewById(R.id.logout);
+        Logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendtoLogout();
             }
         });
 
@@ -65,6 +79,14 @@ public class AdminPanel extends AppCompatActivity {
     }
     public void sendToAddQuiz(){
         Intent intent=new Intent(this,AddQuiz.class);
+        startActivity(intent);
+    }
+    public void  sendtoLogout(){
+        Intent intent=new Intent(this,Login.class);
+        startActivity(intent);
+    }
+    private void sendToUpdateQuizz(){
+        Intent intent=new Intent(this,UpdateQuiz.class);
         startActivity(intent);
     }
 }

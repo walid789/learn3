@@ -19,6 +19,7 @@ public class LessonPlay extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lesson_play);
+        getSupportActionBar().setTitle("Lesson Play");
         TextView titleTextView = findViewById(R.id.titleTextView);
         TextView paragraphTextView = findViewById(R.id.paragraphTextView);
         TextView codeWebView = findViewById(R.id.codeWebView);

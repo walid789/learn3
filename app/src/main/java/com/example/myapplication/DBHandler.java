@@ -156,7 +156,59 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
+    public void updateLesson(int id, String name, String title, String paragraph, String code_playground, int id_course) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("name", name);
+        values.put("title", title);
+        values.put("paragraphe", paragraph); // Corrected column name
+        values.put("code_playground", code_playground);
+        values.put("id_course", id_course);
 
+        // Define the WHERE clause to specify which lesson to update based on the ID
+        String whereClause = "id = ?";
+        String[] whereArgs = { String.valueOf(id) };
+
+        // Update the lesson in the database
+        int numRowsUpdated = db.update("lesson", values, whereClause, whereArgs);
+
+        // Check if the update was successful
+        if (numRowsUpdated > 0) {
+            Log.d("Database", "Lesson updated successfully"); // Corrected log message
+        } else {
+            Log.d("Database", "Lesson not updated"); // Corrected log message
+        }
+
+        db.close();
+    }
+
+    public void updateQuiz(int id, String question, String option1, String option2, String option3, int valid_option, int id_lesson) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("question", question);
+        values.put("option1", option1);
+        values.put("option2", option2);
+        values.put("option3", option3);
+        values.put("option3", option3);
+        values.put("valid_option", valid_option);
+        values.put("id_lesson", id_lesson);
+
+        // Define the WHERE clause to specify which lesson to update based on the ID
+        String whereClause = "id = ?";
+        String[] whereArgs = { String.valueOf(id) };
+
+        // Update the lesson in the database
+        int numRowsUpdated = db.update("quiz", values, whereClause, whereArgs);
+
+        // Check if the update was successful
+        if (numRowsUpdated > 0) {
+            Log.d("Database", "quiz updated successfully"); // Corrected log message
+        } else {
+            Log.d("Database", "quiz not updated"); // Corrected log message
+        }
+
+        db.close();
+    }
     // we have created a new method for reading all the courses.
     public ArrayList<Course> readCourses()
     {
@@ -194,12 +246,63 @@ public class DBHandler extends SQLiteOpenHelper {
 
         return courseModalArrayList;
     }
-
-    public ArrayList<Course> readCoursesById(int id)
+    /*public ArrayList<Lesson> readLessonByid(int id)
     {
-
         SQLiteDatabase db = this.getReadableDatabase();
 
+
+        Cursor cursorLesson = db.rawQuery("SELECT id, name, image FROM " + "lesson" + " WHERE id = ?", new String[]{String.valueOf(id)});
+
+        ArrayList<Lesson> courseModalArrayList
+                = new ArrayList<Lesson>();
+        int rowCount = cursorLesson.getCount();
+        Log.d("RowCount", "Number of Rows: " + rowCount);
+        // moving our cursor to first position.
+
+        while (cursorLesson.moveToNext()) {
+            // on below line we are adding the data from
+            // cursor to our array list.
+            Course course = new Course(
+                    cursorLesson.getInt(cursorLesson.getColumnIndexOrThrow("id")),
+                    cursorCourses.getString(cursorCourses.getColumnIndexOrThrow("name")),
+                    cursorCourses.getBlob(cursorCourses.getColumnIndexOrThrow("image"))
+            );
+            courseModalArrayList.add(course);
+        }
+
+        // moving our cursor to next.
+        // at last closing our cursor
+        // and returning our array list.
+        cursorCourses.close();
+        db.close();
+
+        return courseModalArrayList;
+    }*/
+
+    public ArrayList<QuizClass> readQuizById(int id)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursorCourses = db.rawQuery("SELECT question,option1,option2,option3,valid_option,id_lesson FROM " + "quiz" + " WHERE id = ?", new String[]{String.valueOf(id)});
+        ArrayList<QuizClass> quizModalArrayList
+                = new ArrayList<QuizClass>();
+        while (cursorCourses.moveToNext()) {
+            QuizClass course = new QuizClass(
+                    cursorCourses.getString(cursorCourses.getColumnIndexOrThrow("question")),
+                    cursorCourses.getString(cursorCourses.getColumnIndexOrThrow("option1")),
+                    cursorCourses.getString(cursorCourses.getColumnIndexOrThrow("option2")),
+                    cursorCourses.getString(cursorCourses.getColumnIndexOrThrow("option3")),
+                    cursorCourses.getInt(cursorCourses.getColumnIndexOrThrow("valid_option")),
+                    cursorCourses.getInt(cursorCourses.getColumnIndexOrThrow("id_lesson"))
+            );
+            quizModalArrayList.add(course);
+        }
+        cursorCourses.close();
+        db.close();
+        return quizModalArrayList;
+    }
+    public ArrayList<Course> readCoursesById(int id)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursorCourses = db.rawQuery("SELECT id, name, image FROM " + TABLE_course + " WHERE id = ?", new String[]{String.valueOf(id)});
         ArrayList<Course> courseModalArrayList
                 = new ArrayList<Course>();

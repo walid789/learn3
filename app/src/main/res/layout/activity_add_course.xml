@@ -1,15 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp">
 
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="Enter Course Name "
+        android:textColorHint="@color/black"
+        app:boxStrokeColor="@color/black">
+
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/editTextCourseName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Course Name" />
+        android:inputType="text"
+        android:singleLine="true"
+        android:textColor="@color/black" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <ImageView
         android:id="@+id/imageViewCourseImage"
@@ -25,11 +39,13 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="16dp"
+        android:backgroundTint="@color/black"
         android:text="Select Image" />
-
+    
     <Button
         android:id="@+id/buttonSaveCourse"
         android:layout_width="match_parent"
+        android:backgroundTint="@color/black"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Save Course" />
