@@ -58,7 +58,7 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL(query);
     }
 
-    public void addNewLesson(int id_course  ,String name ,String title ,String pargraphe ,String code_playground) {
+    public void addNewLesson(int id_course  ,String name ,String title ,String pargraphe ,String code_playground,String youtube_url) {
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -67,6 +67,7 @@ public class DBHandler extends SQLiteOpenHelper {
         values.put("title", title);
         values.put("paragraphe", pargraphe);
         values.put("code_playground", code_playground);
+        values.put("youtube_url", youtube_url);
         db.insert("lesson", null, values);
         db.close();
     }
@@ -156,7 +157,7 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void updateLesson(int id, String name, String title, String paragraph, String code_playground, int id_course) {
+    public void updateLesson(int id, String name, String title, String paragraph, String code_playground, int id_course,String ulr_youtube) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("name", name);
@@ -164,6 +165,7 @@ public class DBHandler extends SQLiteOpenHelper {
         values.put("paragraphe", paragraph); // Corrected column name
         values.put("code_playground", code_playground);
         values.put("id_course", id_course);
+        values.put("youtube_url", ulr_youtube);
 
         // Define the WHERE clause to specify which lesson to update based on the ID
         String whereClause = "id = ?";
@@ -246,38 +248,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
         return courseModalArrayList;
     }
-    /*public ArrayList<Lesson> readLessonByid(int id)
-    {
-        SQLiteDatabase db = this.getReadableDatabase();
 
-
-        Cursor cursorLesson = db.rawQuery("SELECT id, name, image FROM " + "lesson" + " WHERE id = ?", new String[]{String.valueOf(id)});
-
-        ArrayList<Lesson> courseModalArrayList
-                = new ArrayList<Lesson>();
-        int rowCount = cursorLesson.getCount();
-        Log.d("RowCount", "Number of Rows: " + rowCount);
-        // moving our cursor to first position.
-
-        while (cursorLesson.moveToNext()) {
-            // on below line we are adding the data from
-            // cursor to our array list.
-            Course course = new Course(
-                    cursorLesson.getInt(cursorLesson.getColumnIndexOrThrow("id")),
-                    cursorCourses.getString(cursorCourses.getColumnIndexOrThrow("name")),
-                    cursorCourses.getBlob(cursorCourses.getColumnIndexOrThrow("image"))
-            );
-            courseModalArrayList.add(course);
-        }
-
-        // moving our cursor to next.
-        // at last closing our cursor
-        // and returning our array list.
-        cursorCourses.close();
-        db.close();
-
-        return courseModalArrayList;
-    }*/
 
     public ArrayList<QuizClass> readQuizById(int id)
     {
@@ -358,14 +329,12 @@ public class DBHandler extends SQLiteOpenHelper {
 
         // on below line we are creating a cursor with query to
         // read data from database.
-        Cursor cursorCourses = db.rawQuery("SELECT id,name,title,paragraphe,code_playground,id_course  FROM Lesson where id_course=" + id_course, null);
+        Cursor cursorCourses = db.rawQuery("SELECT id,name,title,paragraphe,code_playground,id_course,youtube_url  FROM Lesson where id_course=" + id_course, null);
 
         // on below line we are creating a new array list.
         ArrayList<Lesson> courseModalArrayList
                 = new ArrayList<Lesson>();
-        /*int rowCount = cursorCourses.getCount();
-        Log.d("RowCount", "Number of Rows: " + rowCount);*/
-        // moving our cursor to first position.
+
 
         while (cursorCourses.moveToNext()) {
             // on below line we are adding the data from
@@ -376,7 +345,8 @@ public class DBHandler extends SQLiteOpenHelper {
                     cursorCourses.getString(cursorCourses.getColumnIndexOrThrow("title")),
                     cursorCourses.getString(cursorCourses.getColumnIndexOrThrow("paragraphe")),
                     cursorCourses.getString(cursorCourses.getColumnIndexOrThrow("code_playground")),
-                    cursorCourses.getInt(cursorCourses.getColumnIndexOrThrow("id_course")));
+                    cursorCourses.getInt(cursorCourses.getColumnIndexOrThrow("id_course")),
+                    cursorCourses.getString(cursorCourses.getColumnIndexOrThrow("youtube_url")));
                     courseModalArrayList.add(lesson);
         }
 

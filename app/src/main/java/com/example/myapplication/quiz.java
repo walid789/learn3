@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,6 +44,14 @@ public class quiz extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, stringArray);
         // Set the adapter for the ListView
         listView.setAdapter(adapter);
+        RatingBar ratingBar=findViewById(R.id.rating);
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                // Handle rating changes here
+                Toast.makeText(getApplicationContext(), "thanks your rating is matter   "+rating, Toast.LENGTH_SHORT).show();
+            }
+        });
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -59,8 +68,8 @@ public class quiz extends AppCompatActivity {
         });
     }
     public void  sendtoListAll(){
-        Intent intent=new Intent(this,LessonViewAll.class);
-        intent.putExtra("course_id", quizList.get(0).getId_lesson());
+        Intent intent=new Intent(this,MainActivity.class);
+        //intent.putExtra("course_id", quizList.get(0).getId_lesson());
         startActivity(intent);
     }
 

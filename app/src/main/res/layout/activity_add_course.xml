@@ -41,7 +41,6 @@
         android:layout_marginTop="16dp"
         android:backgroundTint="@color/black"
         android:text="Select Image" />
-    
     <Button
         android:id="@+id/buttonSaveCourse"
         android:layout_width="match_parent"

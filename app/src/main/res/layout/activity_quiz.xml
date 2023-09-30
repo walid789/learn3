@@ -24,8 +24,15 @@
         android:layout_marginTop="15dp"
         android:layout_marginBottom="8dp"
         />
+
     <ListView
         android:id="@+id/listViewquiz"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="319dp" />
+    <RatingBar
+        android:id="@+id/rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        />
 </LinearLayout>

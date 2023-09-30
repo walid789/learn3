@@ -14,7 +14,7 @@ public class AddNewLesson extends AppCompatActivity {
     private EditText editTextName;
     private EditText editTextTitle;
     private EditText editTextParagraph;
-    private EditText editTextCodePlayground;
+    private EditText editTextCodePlayground,editTextyoutubeUrl;
     private Button addButton;
     private DBHandler dbHandler;
     @Override
@@ -22,6 +22,7 @@ public class AddNewLesson extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_lesson);
         getSupportActionBar().hide();
+        editTextyoutubeUrl=findViewById(R.id.youtube_url);
         // Associate views with variables
         editTextId = findViewById(R.id.editTextId);
         editTextName = findViewById(R.id.editTextName);
@@ -40,7 +41,8 @@ public class AddNewLesson extends AppCompatActivity {
                 String Title=editTextTitle.getText().toString();
                 String Paragraph=editTextParagraph.getText().toString();
                 String CodePlayground =editTextCodePlayground.getText().toString();
-                dbHandler.addNewLesson(id,Name,Title,Paragraph,CodePlayground);
+                String ulr_youtube=editTextyoutubeUrl.getText().toString();
+                dbHandler.addNewLesson(id,Name,Title,Paragraph,CodePlayground,ulr_youtube);
                 Toast.makeText(AddNewLesson.this, "Data added!", Toast.LENGTH_SHORT).show();
                 sendtoAdminPanel();
             }
