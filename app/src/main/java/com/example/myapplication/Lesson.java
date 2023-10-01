@@ -9,10 +9,6 @@ public class Lesson {
     private int  id_course;
     private String youtube_url;
 
-
-
-
-
     public Lesson(int id, String name, String title, String paragraphe, String code_playground, int id_course , String youtube_url) {
         this.id = id;
         this.name = name;

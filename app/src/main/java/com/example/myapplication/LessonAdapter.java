@@ -19,23 +19,16 @@ public class LessonAdapter extends ArrayAdapter<Lesson>
     {
         super(context,resource,LessonList);
     }
-
-
     @Override
     public View getView(int position, View convertView, ViewGroup parent)
     {
         Lesson lesson = getItem(position);
-
         if(convertView == null)
         {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item, parent, false);
         }
         TextView lessonName = (TextView) convertView.findViewById(R.id.LessonName);
-
         lessonName.setText(lesson.getName());
-
-
-
         return convertView;
     }
 }
