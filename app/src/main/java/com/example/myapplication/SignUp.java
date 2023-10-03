@@ -21,6 +21,8 @@ public class SignUp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         getSupportActionBar().hide();
+
+
         button=findViewById(R.id.buttonSignUp);
         txt=findViewById(R.id.txtSignIn);
         txt.setOnClickListener(new View.OnClickListener() {
@@ -29,7 +31,7 @@ public class SignUp extends AppCompatActivity {
                 sendToLogin();
             }
         });
-        // pour recupere les valeur du edit text
+        // pour recuperate les zone de text
         user_nameEdt =findViewById(R.id.editTextUsername);
         passwordEdt =findViewById(R.id.editTextPassword);
         phone_numberEdt =findViewById(R.id.editTextPhoneNumber);

@@ -51,7 +51,14 @@ public class UpdateDeleteCourse extends AppCompatActivity {
         }
         Button buttonSelectImage = findViewById(R.id.buttonSelectImage);
         Button buttonSaveCourse = findViewById(R.id.buttonSaveCourse);
-
+        Button butondelete=findViewById(R.id.detecourse);
+        butondelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dbHandler.deleteCourse(course_id);
+                BackToList();
+            }
+        });
 
 
 

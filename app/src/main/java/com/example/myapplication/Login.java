@@ -33,9 +33,7 @@ public class Login extends AppCompatActivity {
         passwordEdt =findViewById(R.id.editTextPassword);
         dbHandler = new DBHandler(Login.this);
         courseModalArrayList = dbHandler.readCourses();
-        //String n =  dbHandler.getAllCourses();
 
-        //user_nameEdt.setText(n);
 
         buttonSinUp.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -354,8 +354,46 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
         return courseModalArrayList;
     }
+
+    public void deleteCourse(int id_course){
+        SQLiteDatabase db = this.getWritableDatabase(); // Open or create the database
+
+        String tableName = "course";
+        String whereClause = "id = ?";
+        String[] whereArgs = new String[] {String.valueOf(id_course)};
+
+        int rowsDeletedCourse = db.delete(tableName, whereClause, whereArgs);
+
+        db.close(); // Close the database
+
+    }
+    public void deleteLesson(int id){
+        SQLiteDatabase db = this.getWritableDatabase(); // Open or create the database
+
+        String tableName = "lesson";
+        String whereClause = "id = ?";
+        String[] whereArgs = new String[] {String.valueOf(id)};
+
+        int rowsDeletedCourse = db.delete(tableName, whereClause, whereArgs);
+
+        db.close(); // Close the database
+
+    }
+    public void deletequiz(int id){
+        SQLiteDatabase db = this.getWritableDatabase(); // Open or create the database
+
+        String tableName = "quiz";
+        String whereClause = "id = ?";
+        String[] whereArgs = new String[] {String.valueOf(id)};
+
+        int rowsDeletedCourse = db.delete(tableName, whereClause, whereArgs);
+
+        db.close(); // Close the database
+
+    }
+
+
         @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
     }
 }

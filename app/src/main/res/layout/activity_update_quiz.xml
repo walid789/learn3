@@ -174,44 +174,35 @@
 
 
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp">
 
-            <ProgressBar
-                android:id="@+id/signUpProgressBar"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center_horizontal"
-                android:visibility="invisible" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/buttonAddQuizz"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/black"
-
+                android:layout_marginTop="30dp"
                 android:paddingStart="20dp"
                 android:paddingTop="10dp"
                 android:paddingEnd="20dp"
                 android:paddingBottom="20dp"
                 android:text="Update Quiz"
                 app:cornerRadius="10dp" />
-
-        </FrameLayout>
-
-        <LinearLayout
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/deletbutton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:backgroundTint="@color/black"
+            android:layout_marginTop="10dp"
+            android:paddingStart="20dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="20dp"
+            android:text="Delete Quiz"
+            app:cornerRadius="10dp" />
 
 
 
-
-        </LinearLayout>
 
     </LinearLayout>
 

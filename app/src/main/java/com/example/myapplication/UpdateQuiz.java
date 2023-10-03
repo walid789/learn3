@@ -15,8 +15,10 @@ import java.util.ArrayList;
 public class UpdateQuiz extends AppCompatActivity {
     private EditText qestionEdt, option1Edt,  option2Edt,  option3Edt,validOptionEdit,id_LessonEdit,idsearch;
     private DBHandler dbHandler;
-    private Button updatesuizButton,updatequiz;
+    private Button updatesuizButton,updatequiz,deletbutton;
     private ArrayList<QuizClass>ListQuiz =new ArrayList<QuizClass>();
+    String valueidsearch;
+    int id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,8 +38,8 @@ public class UpdateQuiz extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 idsearch=findViewById(R.id.editextidSearch);
-                String valueidsearch=idsearch.getText().toString();
-                int id=Integer.parseInt(valueidsearch);
+                 valueidsearch=idsearch.getText().toString();
+                 id=Integer.parseInt(valueidsearch);
                 ListQuiz=dbHandler.readQuizById(id);
                 if(ListQuiz.size()==1){
                qestionEdt.setText(ListQuiz.get(0).getQuestion());
@@ -64,6 +66,16 @@ public class UpdateQuiz extends AppCompatActivity {
                 String valueidsearch1=idsearch.getText().toString();
                 int id1=Integer.parseInt(valueidsearch1);
                 dbHandler.updateQuiz(id1,qestion,option1,option2,option3,validOption,id_lesson);
+                sendtoAdminPanel();
+            }
+        });
+
+        deletbutton=findViewById(R.id.deletbutton);
+        deletbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dbHandler.deletequiz(id);
+                Toast.makeText(UpdateQuiz.this, "quiz has deleted", Toast.LENGTH_SHORT).show();
                 sendtoAdminPanel();
             }
         });

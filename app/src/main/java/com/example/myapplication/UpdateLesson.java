@@ -18,7 +18,7 @@ public class UpdateLesson extends AppCompatActivity {
     private EditText editTextTitle;
     private EditText editTextParagraph;
     private EditText editTextCodePlayground,editTextyoutubeUrl;
-    private Button addButton;
+    private Button addButton,deletButton;
     private DBHandler dbHandler;
     public int id_lesson;
     @Override
@@ -34,13 +34,26 @@ public class UpdateLesson extends AppCompatActivity {
         editTextParagraph = findViewById(R.id.editTextParagraph);
         editTextCodePlayground = findViewById(R.id.editTextCodePlayground);
         editTextyoutubeUrl=findViewById(R.id.youtube_url);
+        deletButton=findViewById(R.id.btndelete);
+
+
         setupdata();
+        deletButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dbHandler.deleteLesson(LessonList.get(id_lesson).getId());
+                String id_course=editTextId.getText().toString();
+                int n = Integer.parseInt(id_course);
+                Intent intent = new Intent(UpdateLesson.this, LessonViewAll.class);
+                intent.putExtra("course_id", n);
+                startActivity(intent);
+            }
+        });
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String id_course=editTextId.getText().toString();
                 int n = Integer.parseInt(id_course);
-
                 String name=editTextName.getText().toString();
                 String title=editTextTitle.getText().toString();
                 String Paragraph=editTextParagraph.getText().toString();

@@ -48,6 +48,12 @@
         android:layout_marginTop="16dp"
         android:backgroundTint="@color/black"
         android:text="Update Course" />
-
+    <Button
+        android:id="@+id/detecourse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/black"
+        android:text="Delete  Course" />
 
 </LinearLayout>
