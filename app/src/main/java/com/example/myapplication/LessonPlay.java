@@ -41,12 +41,14 @@ public class LessonPlay extends AppCompatActivity {
         titleTextView.setText(LessonList.get(item_id).getTitle());
         paragraphTextView.setText(LessonList.get(item_id).getParagraphe());
         codeWebView.setText(LessonList.get(item_id).getCode_playground());
+        // cette partier de code corespendant a video
         String video=LessonList.get(item_id).getYoutube_url();
         webView.loadData(video,  "text/html",  "utf-8");
         webView.getSettings().setJavaScriptEnabled(true);
         if (18 < Build.VERSION.SDK_INT ){
             webView.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
         }
+        // end video
         button=findViewById(R.id.quiz);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,5 +75,4 @@ private void sendtoAdmin(){
         intent.putExtra("id_lesson", id_lesson);
         startActivity(intent);
     }
-
 }

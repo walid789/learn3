@@ -22,8 +22,10 @@ public class AddNewLesson extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_lesson);
         getSupportActionBar().hide();
-        editTextyoutubeUrl=findViewById(R.id.youtube_url);
+
         // Associate views with variables
+        // SEARCH THE VIEWS BY ID
+        editTextyoutubeUrl=findViewById(R.id.youtube_url);
         editTextId = findViewById(R.id.editTextId);
         editTextName = findViewById(R.id.editTextName);
         editTextTitle = findViewById(R.id.editTextTitle);
@@ -35,6 +37,7 @@ public class AddNewLesson extends AppCompatActivity {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //get the string from the les zone de text
                 String TextId=editTextId.getText().toString();
                 int id = Integer.parseInt(TextId);
                 String Name=editTextName.getText().toString();
@@ -42,12 +45,14 @@ public class AddNewLesson extends AppCompatActivity {
                 String Paragraph=editTextParagraph.getText().toString();
                 String CodePlayground =editTextCodePlayground.getText().toString();
                 String ulr_youtube=editTextyoutubeUrl.getText().toString();
+                // on appler le methode addnewLesson
                 dbHandler.addNewLesson(id,Name,Title,Paragraph,CodePlayground,ulr_youtube);
                 Toast.makeText(AddNewLesson.this, "Data added!", Toast.LENGTH_SHORT).show();
                 sendtoAdminPanel();
             }
         });
     }
+    // REDIRGER VERS LE ADMIN PANEL
     private  void sendtoAdminPanel(){
         Intent intent=new Intent(this,AdminPanel.class);
         startActivity(intent);}

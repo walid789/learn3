@@ -18,6 +18,9 @@ public class AddQuiz extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_quiz);
         getSupportActionBar().hide();
+
+        // Associate views with variables
+        // SEARCH THE VIEWS BY ID
         qestionEdt = findViewById(R.id.editTextQestion);
         option1Edt = findViewById(R.id.editTextoption1);
         option2Edt = findViewById(R.id.editTextoption2);
@@ -35,7 +38,7 @@ public class AddQuiz extends AppCompatActivity {
             }
         });
     }
-
+// CETTE METHODE EN RECUPERE LE STRING FROM EDITETEXT
     public void createquiz(){
         String qestion=qestionEdt.getText().toString();
         String option1=option1Edt.getText().toString();
@@ -43,10 +46,11 @@ public class AddQuiz extends AppCompatActivity {
         String option3=option3Edt.getText().toString();
         int validOption=Integer.parseInt(validOptionEdit.getText().toString());
         int id_course=Integer.parseInt(id_courseEdit.getText().toString());
-
+        //  on applller le methode saveQuiz POUR ENRGISTER LE QUIZ
         dbHandler.saveQuiz(qestion,option1,option2,option3,validOption,id_course);
         Toast.makeText(AddQuiz.this, "Quizz has been added.", Toast.LENGTH_SHORT).show();
     }
+    // cette methode capapble de rederiger vers le admin panel
     public void sendToAdmin(){
         Intent intent=new Intent(this,AdminPanel.class);
         startActivity(intent);

@@ -63,13 +63,6 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".UserPnale"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".LessonPlay"
             android:exported="false">
             <meta-data
@@ -91,13 +84,6 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".Update_course"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".List_all"
             android:exported="false">
             <meta-data
@@ -106,13 +92,6 @@
         </activity>
         <activity
             android:name=".AddCourse"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".UserPanel"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

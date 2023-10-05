@@ -29,14 +29,14 @@ public class AddCourse extends AppCompatActivity {
         setContentView(R.layout.activity_add_course);
         getSupportActionBar().setTitle("Add New Course");
 
-
+        // on recupere les image et le zoine de text et les 2 button par ces id
         editTextCourseName = findViewById(R.id.editTextCourseName);
         imageViewCourseImage = findViewById(R.id.imageViewCourseImage);
         Button buttonSelectImage = findViewById(R.id.buttonSelectImage);
         Button buttonSaveCourse = findViewById(R.id.buttonSaveCourse);
         dbHandler = new DBHandler(AddCourse.this);
 
-
+        // on ajouter un event a le button select-image
         buttonSelectImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,6 +46,8 @@ public class AddCourse extends AppCompatActivity {
                 startActivityForResult(intent, REQUEST_IMAGE_CAPTURE);
             }
         });
+
+        // si click sur le button save
         buttonSaveCourse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

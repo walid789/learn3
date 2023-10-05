@@ -37,10 +37,14 @@ public class UpdateQuiz extends AppCompatActivity {
         updatequiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // en  va chercher les quiz par id
+                // dabord en recupere le valeur en suit en appler le fonction readquiz By id
                 idsearch=findViewById(R.id.editextidSearch);
                  valueidsearch=idsearch.getText().toString();
                  id=Integer.parseInt(valueidsearch);
                 ListQuiz=dbHandler.readQuizById(id);
+
+                //  si le quiz est trouve alors affcter les valeur dans les edite text
                 if(ListQuiz.size()==1){
                qestionEdt.setText(ListQuiz.get(0).getQuestion());
                option1Edt.setText(ListQuiz.get(0).getOption1());
@@ -54,6 +58,7 @@ public class UpdateQuiz extends AppCompatActivity {
             }
         });
         updatesuizButton=findViewById(R.id.buttonAddQuizz);
+        //ajouter un event a button puis recupere les valeur saisire par admin
         updatesuizButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,12 +70,14 @@ public class UpdateQuiz extends AppCompatActivity {
                 int id_lesson= Integer.parseInt(id_LessonEdit.getText().toString());
                 String valueidsearch1=idsearch.getText().toString();
                 int id1=Integer.parseInt(valueidsearch1);
+                // on applelr les fonction update quiz qui setuie dans dbhandler
                 dbHandler.updateQuiz(id1,qestion,option1,option2,option3,validOption,id_lesson);
                 sendtoAdminPanel();
             }
         });
 
         deletbutton=findViewById(R.id.deletbutton);
+        // on ajouter un evenment a notre button delete et on appler le methode deletquiz avec parametre id de quiz
         deletbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,5 +89,6 @@ public class UpdateQuiz extends AppCompatActivity {
     }
     private  void sendtoAdminPanel(){
     Intent intent=new Intent(this,AdminPanel.class);
-    startActivity(intent);}
+    startActivity(intent);
+    }
 }
